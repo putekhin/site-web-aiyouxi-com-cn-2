@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>简明指南 · 威廉希尔</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background: #f4f9fc;
+            color: #1d2b36;
+            line-height: 1.6;
+            padding: 1.5rem 1rem 3rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-wrapper {
+            max-width: 1024px;
+            width: 100%;
+        }
+
+        /* ---------- 网格卡片蓝绿色调 ---------- */
+        .hero {
+            text-align: center;
+            padding: 2.4rem 0.5rem 1.8rem;
+            border-bottom: 1px solid #c7e0e8;
+            margin-bottom: 2.2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0f3b44;
+            background: linear-gradient(145deg, #0a4b5a 0%, #1b6e7a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+        }
+
+        .hero .sub {
+            font-size: 1.05rem;
+            color: #2f6370;
+            margin-top: 0.65rem;
+            background: rgba(190, 220, 230, 0.25);
+            display: inline-block;
+            padding: 0.2rem 1.2rem;
+            border-radius: 40px;
+            backdrop-filter: blur(2px);
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.8rem;
+            margin: 2rem 0 2.8rem;
+        }
+
+        @media (min-width: 620px) {
+            .intro-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .card {
+            background: #ffffffdd;
+            backdrop-filter: blur(4px);
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.6rem 1.5rem 1.8rem;
+            box-shadow: 0 8px 20px rgba(30, 80, 90, 0.06), 0 0 0 1px rgba(60, 128, 140, 0.08);
+            transition: all 0.2s ease;
+            border-left: 4px solid #2b8c9c;
+        }
+
+        .card:hover {
+            box-shadow: 0 12px 28px rgba(20, 90, 105, 0.10);
+            border-left-color: #1d7a8a;
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0a4b5a;
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card p, .card li {
+            font-size: 0.97rem;
+            color: #203b44;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card ul li {
+            padding: 0.3rem 0 0.3rem 1.3rem;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.65rem;
+            width: 8px;
+            height: 8px;
+            background: #4ca3b5;
+            border-radius: 2px;
+            transform: rotate(45deg);
+            opacity: 0.7;
+        }
+
+        .badge {
+            background: #dceef2;
+            color: #0a4b5a;
+            padding: 0.1rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: inline-block;
+            margin-left: 0.3rem;
+        }
+
+        .accent-link {
+            color: #1d7a8a;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dashed #8ab9c7;
+            transition: border 0.15s, color 0.15s;
+        }
+
+        .accent-link:hover {
+            color: #0a4b5a;
+            border-bottom: 1px solid #1d7a8a;
+        }
+
+        .inline-highlight {
+            background: #e5f2f5;
+            padding: 0.1rem 0.3rem;
+            border-radius: 6px;
+        }
+
+        .note-box {
+            background: #dceef2;
+            border-radius: 40px 16px 40px 16px;
+            padding: 1.5rem 1.8rem;
+            margin: 2.5rem 0 1.8rem;
+            color: #0b3f4a;
+            font-size: 0.98rem;
+            line-height: 1.7;
+        }
+
+        .faq-mini {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.8rem 0;
+        }
+
+        .faq-item {
+            flex: 1 1 210px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.2rem 1.2rem 1.2rem;
+            box-shadow: 0 3px 10px rgba(30, 70, 80, 0.03);
+            border: 1px solid #cde3e9;
+        }
+
+        .faq-item strong {
+            color: #0f4e5c;
+            display: block;
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .faq-item p {
+            font-size: 0.9rem;
+            color: #2b5765;
+        }
+
+        .closing {
+            border-top: 1px solid #c7dfe7;
+            margin-top: 2.5rem;
+            padding: 1.8rem 0 0.2rem;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #2b5b68;
+        }
+
+        .closing a.accent-link {
+            font-weight: 600;
+        }
+
+        button.mock-btn {
+            background: transparent;
+            border: 1px solid #2b8c9c;
+            color: #0a4b5a;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            margin: 0.2rem 0.2rem;
+            cursor: default;
+            transition: 0.1s;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        .flex-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem 0.6rem;
+            margin: 0.8rem 0;
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.8rem; }
+            .card { padding: 1.3rem; }
+            .note-box { padding: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- 开场短句 -->
+    <div class="hero">
+        <h1>从一条线索开始</h1>
+        <div class="sub">简明指南 · 信息优先</div>
+    </div>
+
+    <!-- 承接段落 -->
+    <p style="font-size:1.05rem; max-width: 700px; margin: 0 auto 1.2rem; padding: 0 0.5rem; text-align: center;">
+        当你要了解某个领域，最直接的路径往往藏在一个精准的名字里。<br>
+        这里整理了一份围绕<a href="https://index--williamhill.com" class="accent-link">威廉希尔</a>的实用备忘，包含访问提醒、基本特性与常见疑问摘要。
+    </p>
+
+    <!-- 特点列表（网格卡片） -->
+    <div class="intro-grid">
+
+        <div class="card">
+            <h3>◈ 简明接入 <span class="badge">直达</span></h3>
+            <p>主标识明确，访问路径直接。不需要层层跳转，<span class="inline-highlight">索引页面</span>为你提供最简洁的起点。推荐使用最新版浏览器以获得完整呈现。</p>
+            <div class="flex-tags">
+                <button class="mock-btn">https</button>
+                <button class="mock-btn">标准端口</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>◈ 内容结构</h3>
+            <ul>
+                <li>模块分区清晰，导航层级少</li>
+                <li>信息分类以实用为先</li>
+                <li>适配主流移动端与桌面端</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>◈ 访问提醒</h3>
+            <p>请确认网络环境稳定。若遇到加载延迟，可尝试刷新或更换DNS。建议将<span class="inline-highlight">威廉希尔</span>加入书签以便快速返回。部分功能可能需要启用JavaScript。</p>
+        </div>
+
+        <div class="card">
+            <h3>◈ 场景举例</h3>
+            <p>快速查阅概况 · 比对信息入口 · 作为常用参考。无论是初次接触还是日常使用，保持清晰预期能提升效率。</p>
+        </div>
+    </div>
+
+    <!-- 提示段落 / 温和说明 -->
+    <div class="note-box">
+        <strong style="display: block; margin-bottom: 0.3rem;">📌 一点提示</strong>
+        页面内容基于公开信息与常规访问体验整理。请依据自身需求判断信息适用性。如果你正在寻找直接索引页，<a href="https://index--williamhill.com" class="accent-link">威廉希尔</a>这个名称已经指向最核心的位置。建议保存并定期了解更新。
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div style="margin: 2rem 0 0.5rem;">
+        <h2 style="font-size: 1.3rem; font-weight: 500; color: #0f4e5c; border-left: 4px solid #4ca3b5; padding-left: 0.8rem; margin-bottom: 1rem;">常见疑问摘要</h2>
+        <div class="faq-mini">
+            <div class="faq-item">
+                <strong>是否移动端可用？</strong>
+                <p>是。页面采用响应式设计，手机与平板均可流畅阅读及操作。</p>
+            </div>
+            <div class="faq-item">
+                <strong>需要注册吗？</strong>
+                <p>索引页面本身无需注册。部分扩展服务可能有独立规则，请以实际页面说明为准。</p>
+            </div>
+            <div class="faq-item">
+                <strong>语言支持？</strong>
+                <p>当前以中文内容为主，同时保留国际化标识，多语言环境可正常加载。</p>
+            </div>
+            <div class="faq-item">
+                <strong>链接安全？</strong>
+                <p>指向的域名使用标准HTTPS协议。建议始终核对地址栏信息。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 温和结尾 -->
+    <div class="closing">
+        <p style="margin-bottom: 0.8rem;">— 保持直接，保持简单 —</p>
+        <p style="font-size: 0.9rem; color: #3d6b78;">本页仅作为信息指引，不构成任何承诺或保证。<br>
+        如果你需要进入索引页，推荐直接定位到 <a href="https://index--williamhill.com" class="accent-link">威廉希尔</a>。</p>
+        <p style="margin-top: 1.5rem; opacity: 0.45; font-size: 0.8rem;">‎</p>
+    </div>
+
+</div>
+</body>
+</html>
