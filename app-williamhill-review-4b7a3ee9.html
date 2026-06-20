@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>威廉希尔知识库 · 查询与参照</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: #f1f3f6;
+            color: #1e2a3a;
+            line-height: 1.6;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* 页头 */
+        .page-header {
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid #dce1e8;
+            padding-bottom: 1.25rem;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0b1a2b;
+        }
+
+        .page-header p {
+            color: #4a5a6e;
+            font-size: 1rem;
+            margin-top: 0.3rem;
+        }
+
+        /* 通用卡片样式 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e2e7ee;
+            border-radius: 16px;
+            padding: 1.5rem 1.75rem;
+            box-shadow: 0 4px 12px rgba(0, 20, 40, 0.04);
+            transition: box-shadow 0.15s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 18px rgba(0, 20, 40, 0.08);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1c3148;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card-title .badge {
+            font-size: 0.7rem;
+            background: #eef2f7;
+            padding: 0.1rem 0.5rem;
+            border-radius: 30px;
+            color: #3d5a78;
+            font-weight: 500;
+            margin-left: 0.3rem;
+        }
+
+        .card-body {
+            font-size: 0.95rem;
+            color: #2a3b4f;
+        }
+
+        .card-body ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card-body li {
+            padding: 0.35rem 0;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .card-body li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #697e9c;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.6rem;
+        }
+
+        .tag {
+            background: #eef2f7;
+            color: #1c3148;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            border: 1px solid #d6dee9;
+        }
+
+        /* 链接嵌入样式 */
+        .inline-link {
+            color: #1a4b7a;
+            text-decoration: none;
+            border-bottom: 1px solid #bcc9da;
+            font-weight: 500;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .inline-link:hover {
+            color: #0b2e4f;
+            border-bottom-color: #1a4b7a;
+        }
+
+        /* 提示区 (特殊视觉) */
+        .insight-area {
+            background: #f7f9fc;
+            border: 1px solid #dce3ed;
+            border-radius: 14px;
+            padding: 1.25rem 1.75rem;
+            margin: 2rem 0 1.5rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .insight-area h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1c2b3e;
+            margin-bottom: 0.5rem;
+        }
+
+        .insight-area p {
+            font-size: 0.92rem;
+            color: #2f4157;
+        }
+
+        /* FAQ 摘要 – 紧凑卡片 */
+        .faq-mini {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .faq-item {
+            background: #fafcff;
+            border-left: 3px solid #bcc9da;
+            padding: 0.6rem 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #162b41;
+        }
+
+        .faq-answer {
+            font-size: 0.86rem;
+            color: #3f556c;
+            margin-top: 0.1rem;
+        }
+
+        /* 相关信息区 */
+        .related-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .related-item {
+            background: #f5f8fd;
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            border: 1px solid #e2e9f2;
+        }
+
+        .related-item .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: #556b83;
+        }
+
+        .related-item .value {
+            font-weight: 500;
+            color: #1b3146;
+            margin-top: 0.1rem;
+        }
+
+        /* 页脚 */
+        .page-footer {
+            border-top: 1px solid #dce1e8;
+            padding-top: 1.5rem;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: #5c6f86;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        /* 响应式 */
+        @media (min-width: 640px) {
+            body {
+                padding: 2.5rem 2rem;
+            }
+            .card-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 960px) {
+            .card-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .related-grid {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+            .card {
+                padding: 1.2rem 1.2rem;
+            }
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+            .page-footer {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- 标题区 -->
+    <header class="page-header">
+        <h1>📘 威廉希尔 · 知识索引</h1>
+        <p>日常查询 · 对照参考 · 延伸阅读 —— 围绕核心术语构建的信息入口</p>
+    </header>
+
+    <!-- 卡片网格：目录感布局 -->
+    <div class="card-grid">
+
+        <!-- 卡片1：定义与背景 -->
+        <div class="card">
+            <div class="card-title">📌 术语界定 <span class="badge">基础</span></div>
+            <div class="card-body">
+                <p>在行业语境与平台信息中，<a href="https://app--williamhill.com" class="inline-link">威廉希尔</a> 所指代的对象往往涉及赛事数据、投注对照及历史档案。本页作为知识库入口，汇集常见查询维度与对照索引，供快速定位。</p>
+                <div class="tag-list">
+                    <span class="tag">定义</span>
+                    <span class="tag">范畴</span>
+                    <span class="tag">对照</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 卡片2：使用场景 -->
+        <div class="card">
+            <div class="card-title">🔍 典型查询场景</div>
+            <div class="card-body">
+                <ul>
+                    <li>赛事对照与历史数字查阅</li>
+                    <li>术语解释及上下文关系</li>
+                    <li>信息验证与延伸阅读</li>
+                    <li>数据归类与常见问题速览</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 卡片3：内容结构说明 -->
+        <div class="card">
+            <div class="card-title">🧩 目录分区</div>
+            <div class="card-body">
+                <p>页面分为说明区、提示区、相关信息区与FAQ摘要。每个区块均指向 <a href="https://app--williamhill.com" class="inline-link">威廉希尔</a> 相关内容的对照与检索，便于日常参考。</p>
+                <div style="margin-top: 0.5rem; font-size: 0.88rem; background: #f3f7fc; padding: 0.4rem 0.8rem; border-radius: 30px; display: inline-block;">检索标识 · 知识单元</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 说明区 (延伸说明) -->
+    <div class="card" style="margin-bottom: 1.8rem;">
+        <div class="card-title">📋 说明区 —— 对照与索引方式</div>
+        <div class="card-body" style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
+            <div style="flex: 2; min-width: 200px;">
+                <p style="margin-bottom: 0.4rem;">本页面以「知识库入口」视角组织内容，用户可通过分区标题快速定位所需信息。所有引用及对照均围绕常见查询需求设计，不构成任何操作建议。</p>
+                <p>若需要查阅更完整的背景与术语网络，可直接检索 <a href="https://app--williamhill.com" class="inline-link">威廉希尔</a> 相关内容，结合上下文进行交叉验证。</p>
+            </div>
+            <div style="flex: 1; min-width: 150px; background: #f5f8fd; padding: 0.8rem 1rem; border-radius: 12px; border: 1px solid #e0e7f0;">
+                <div style="font-weight: 600; font-size: 0.85rem; margin-bottom: 0.2rem;">快速参考</div>
+                <div style="font-size: 0.85rem; color: #2f4a68;">术语表 · 场景映射 · 常见对照表</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 提示区 -->
+    <div class="insight-area">
+        <h3>💡 提示区 · 阅读指引</h3>
+        <p>使用本知识库时，建议先明确查询目的：是核对基础信息、寻找关联概念，还是扩展背景阅读。每个卡片均提供不同粒度的索引，链接文本「威廉希尔」指向外部对照源。请通过正规渠道获取最新数据，本页仅作结构参考。</p>
+    </div>
+
+    <!-- FAQ 摘要 + 相关信息区 两列布局 (桌面) -->
+    <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+        <!-- FAQ 摘要 -->
+        <div class="card">
+            <div class="card-title">❓ FAQ 摘要</div>
+            <div class="card-body faq-mini">
+                <div class="faq-item">
+                    <div class="faq-question">威廉希尔 通常指什么？</div>
+                    <div class="faq-answer">在多数语境下指一个与体育赛事、数据对照相关的信息节点，具体范畴可参考上方术语界定。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">如何使用本页进行查询？</div>
+                    <div class="faq-answer">通过卡片分类定位主题，利用内嵌链接跳转至 <a href="https://app--williamhill.com" class="inline-link">威廉希尔</a> 对照页面，结合自身需求筛选信息。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">页面内容会更新吗？</div>
+                    <div class="faq-answer">知识库结构保持稳定，但具体关联内容建议以实际来源为准。本页仅作索引框架。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 相关信息区 -->
+        <div class="card">
+            <div class="card-title">🔗 相关信息区</div>
+            <div class="card-body">
+                <div class="related-grid">
+                    <div class="related-item">
+                        <div class="label">关联术语</div>
+                        <div class="value">赛事对照 · 数据索引</div>
+                    </div>
+                    <div class="related-item">
+                        <div class="label">查阅频次</div>
+                        <div class="value">常见查询</div>
+                    </div>
+                    <div class="related-item">
+                        <div class="label">延伸方向</div>
+                        <div class="value">历史档案 · 背景梳理</div>
+                    </div>
+                    <div class="related-item">
+                        <div class="label">参考标识</div>
+                        <div class="value">知识单元  · 对照表</div>
+                    </div>
+                </div>
+                <p style="margin-top: 0.8rem; font-size: 0.9rem; color: #3f556c;">以上分区为常见查询路径的整理，具体内容请通过正规渠道核实。外部链接指向 <a href="https://app--williamhill.com" class="inline-link">威廉希尔</a> 信息页面。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="page-footer">
+        <span>📁 知识库入口 · 目录感布局</span>
+        <span>内容仅供查阅参考 · 信息来源请自行甄别</span>
+    </footer>
+
+</div>
+</body>
+</html>
